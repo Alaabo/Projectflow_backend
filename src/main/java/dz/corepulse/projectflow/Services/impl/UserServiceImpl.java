@@ -1,5 +1,6 @@
 package dz.corepulse.projectflow.Services.impl;
 
+import dz.corepulse.projectflow.Exceptions.BusinessException;
 import dz.corepulse.projectflow.Mappers.UserMapper;
 import dz.corepulse.projectflow.Models.DTO.Requests.UserRequest;
 import dz.corepulse.projectflow.Models.DTO.Responses.UserResponse;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse update(UUID id, UserRequest request) {
         User entity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new BusinessException("User not found"));
 
         mapper.updateEntity(request, entity);
 
@@ -60,7 +61,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse get(UUID id) {
         return repository.findById(id)
                 .map(mapper::toDto)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new BusinessException("User not found"));
     }
 
     @Override
@@ -73,7 +74,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(UUID id) {
         if (!repository.existsById(id))
-            throw new RuntimeException("User not found");
+            throw new BusinessException("User not found");
 
         repository.deleteById(id);
     }

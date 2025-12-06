@@ -25,5 +25,7 @@ public class User extends AbstractEntity {
 
     @ManyToMany(mappedBy = "users")
     private List<Group> groups = new ArrayList<>();
-}
 
+    @ManyToMany(mappedBy = "userList")
+    private List<Project> projects = new ArrayList<>();
+}

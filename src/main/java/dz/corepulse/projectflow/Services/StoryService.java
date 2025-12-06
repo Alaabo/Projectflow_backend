@@ -1,9 +1,11 @@
 package dz.corepulse.projectflow.Services;
 
+import dz.corepulse.projectflow.Models.DTO.Filters.StoryFilter;
 import dz.corepulse.projectflow.Models.DTO.Requests.StoryRequest;
+import dz.corepulse.projectflow.Models.DTO.Responses.PageResponse;
 import dz.corepulse.projectflow.Models.DTO.Responses.StoryResponse;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface StoryService {
@@ -14,7 +16,7 @@ public interface StoryService {
 
     StoryResponse get(UUID id);
 
-    List<StoryResponse> getAll();
+    PageResponse<StoryResponse> getAll(StoryFilter filter, Pageable pageable);
 
     void delete(UUID id);
 }

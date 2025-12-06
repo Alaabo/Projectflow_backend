@@ -2,10 +2,12 @@ package dz.corepulse.projectflow.Services;
 
 
 
+import dz.corepulse.projectflow.Models.DTO.Filters.ProjectFilter;
 import dz.corepulse.projectflow.Models.DTO.Requests.ProjectRequest;
+import dz.corepulse.projectflow.Models.DTO.Responses.PageResponse;
 import dz.corepulse.projectflow.Models.DTO.Responses.ProjectResponse;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface ProjectService {
@@ -16,8 +18,9 @@ public interface ProjectService {
 
     ProjectResponse get(UUID id);
 
-    List<ProjectResponse> getAll();
+    PageResponse<ProjectResponse> getAll(ProjectFilter filter, Pageable pageable);
 
     void delete(UUID id);
-}
 
+    ProjectResponse addUser(UUID projectId, UUID userId);
+}

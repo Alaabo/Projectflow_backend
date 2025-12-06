@@ -14,6 +14,7 @@ public class UserResponse {
 
     private List<UUID> profileIds;
     private List<UUID> groupIds;
+    private List<UUID> projectIds;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

@@ -1,6 +1,6 @@
 package dz.corepulse.projectflow.Mappers;
 
-import dz.corepulse.projectflow.Models.DTO.Requests.StoryRequest;;
+import dz.corepulse.projectflow.Models.DTO.Requests.StoryRequest;
 import dz.corepulse.projectflow.Models.DTO.Responses.StoryResponse;
 import dz.corepulse.projectflow.Models.Entities.Story;
 
@@ -22,4 +22,3 @@ public interface StoryMapper {
     @Mapping(target = "sprint", ignore = true)
     void updateEntity(StoryRequest dto, @MappingTarget Story entity);
 }
-

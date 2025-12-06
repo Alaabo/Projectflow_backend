@@ -1,5 +1,6 @@
 package dz.corepulse.projectflow.Services.impl;
 
+import dz.corepulse.projectflow.Exceptions.BusinessException;
 import dz.corepulse.projectflow.Mappers.PrivilegeMapper;
 import dz.corepulse.projectflow.Models.DTO.Requests.PrivilegeRequest;
 import dz.corepulse.projectflow.Models.DTO.Responses.PrivilegeResponse;
@@ -29,7 +30,7 @@ public class PrivilegeServiceImpl implements PrivilegeService {
     @Override
     public PrivilegeResponse update(UUID id, PrivilegeRequest request) {
         Privilege entity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Privilege not found"));
+                .orElseThrow(() -> new BusinessException("Privilege not found"));
         mapper.updateEntityFromDto(request, entity);
         repository.save(entity);
         return mapper.toDto(entity);
@@ -38,7 +39,7 @@ public class PrivilegeServiceImpl implements PrivilegeService {
     @Override
     public PrivilegeResponse get(UUID id) {
         Privilege entity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Privilege not found"));
+                .orElseThrow(() -> new BusinessException("Privilege not found"));
         return mapper.toDto(entity);
     }
 
@@ -51,7 +52,7 @@ public class PrivilegeServiceImpl implements PrivilegeService {
     @Override
     public void delete(UUID id) {
         if (!repository.existsById(id))
-            throw new RuntimeException("Privilege not found");
+            throw new BusinessException("Privilege not found");
 
         repository.deleteById(id);
     }

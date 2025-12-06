@@ -1,8 +1,6 @@
 package dz.corepulse.projectflow.Controllers;
-
-
-
 import dz.corepulse.projectflow.Models.DTO.Requests.GroupRequest;
+import dz.corepulse.projectflow.Models.DTO.Responses.ApiResponse;
 import dz.corepulse.projectflow.Models.DTO.Responses.GroupResponse;
 import dz.corepulse.projectflow.Services.GroupService;
 import lombok.RequiredArgsConstructor;
@@ -20,29 +18,29 @@ public class GroupController {
     private final GroupService service;
 
     @PostMapping
-    public GroupResponse create(@RequestBody GroupRequest request) {
-        return service.create(request);
+    public ApiResponse<GroupResponse> create(@RequestBody GroupRequest request) {
+        return ApiResponse.success(service.create(request));
     }
 
     @PutMapping("/{id}")
-    public GroupResponse update(@PathVariable UUID id,
-                                @RequestBody GroupRequest request) {
-        return service.update(id, request);
+    public ApiResponse<GroupResponse> update(@PathVariable UUID id,
+                                             @RequestBody GroupRequest request) {
+        return ApiResponse.success(service.update(id, request));
     }
 
     @GetMapping("/{id}")
-    public GroupResponse get(@PathVariable UUID id) {
-        return service.get(id);
+    public ApiResponse<GroupResponse> get(@PathVariable UUID id) {
+        return ApiResponse.success(service.get(id));
     }
 
     @GetMapping
-    public List<GroupResponse> getAll() {
-        return service.getAll();
+    public ApiResponse<List<GroupResponse>> getAll() {
+        return ApiResponse.success(service.getAll());
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public ApiResponse<Void> delete(@PathVariable UUID id) {
         service.delete(id);
+        return ApiResponse.message("Group deleted successfully");
     }
 }
-

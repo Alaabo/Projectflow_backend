@@ -10,14 +10,17 @@ public interface TaskMapper {
 
     @Mapping(target = "story", ignore = true)
     @Mapping(target = "sprint", ignore = true)
+    @Mapping(target = "assignedUser", ignore = true)
     Task toEntity(TaskRequest dto);
 
     @Mapping(target = "storyId", expression = "java(e.getStory() != null ? e.getStory().getId() : null)")
     @Mapping(target = "sprintId", expression = "java(e.getSprint() != null ? e.getSprint().getId() : null)")
+    @Mapping(target = "assignedUserId", expression = "java(e.getAssignedUser() != null ? e.getAssignedUser().getId() : null)")
     TaskResponse toDto(Task e);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "story", ignore = true)
     @Mapping(target = "sprint", ignore = true)
+    @Mapping(target = "assignedUser", ignore = true)
     void updateEntity(TaskRequest dto, @MappingTarget Task entity);
 }

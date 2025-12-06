@@ -1,7 +1,6 @@
 package dz.corepulse.projectflow.Models.DTO.Requests;
 
-
-
+import dz.corepulse.projectflow.Models.Enums.StoryStatus;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -11,7 +10,7 @@ public class StoryRequest {
 
     private String storyName;
     private String desc;
-    private String statut;
+    private StoryStatus statut;
     private String priority;
     private Integer pts;
     private Integer timeLeft;

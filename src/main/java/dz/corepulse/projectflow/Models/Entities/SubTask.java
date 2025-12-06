@@ -1,8 +1,7 @@
 package dz.corepulse.projectflow.Models.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import dz.corepulse.projectflow.Models.Enums.SubTaskStatus;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,9 +13,9 @@ public class SubTask extends AbstractEntity {
 
     private String name;
     private String desc;
-    private String statut;
+    @Enumerated(EnumType.STRING)
+    private SubTaskStatus statut = SubTaskStatus.TODO;
 
     @ManyToOne
     private Task task;
 }
-

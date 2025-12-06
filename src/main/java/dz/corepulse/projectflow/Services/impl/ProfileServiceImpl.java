@@ -1,6 +1,7 @@
 package dz.corepulse.projectflow.Services.impl;
 
 
+import dz.corepulse.projectflow.Exceptions.BusinessException;
 import dz.corepulse.projectflow.Mappers.ProfileMapper;
 import dz.corepulse.projectflow.Models.DTO.Requests.ProfileRequest;
 import dz.corepulse.projectflow.Models.DTO.Responses.ProfileResponse;
@@ -30,7 +31,7 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public ProfileResponse update(UUID id, ProfileRequest request) {
         Profile entity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElseThrow(() -> new BusinessException("Profile not found"));
 
         mapper.updateEntity(request, entity);
         repository.save(entity);
@@ -42,7 +43,7 @@ public class ProfileServiceImpl implements ProfileService {
     public ProfileResponse get(UUID id) {
         return repository.findById(id)
                 .map(mapper::toDto)
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElseThrow(() -> new BusinessException("Profile not found"));
     }
 
     @Override
@@ -55,9 +56,8 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public void delete(UUID id) {
         if (!repository.existsById(id))
-            throw new RuntimeException("Profile not found");
+            throw new BusinessException("Profile not found");
 
         repository.deleteById(id);
     }
 }
-

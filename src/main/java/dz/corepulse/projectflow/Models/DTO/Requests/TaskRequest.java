@@ -1,5 +1,6 @@
 package dz.corepulse.projectflow.Models.DTO.Requests;
 
+import dz.corepulse.projectflow.Models.Enums.TaskStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -10,7 +11,7 @@ public class TaskRequest {
 
     private String taskName;
     private String desc;
-    private String statut;
+    private TaskStatus statut;
     private String priority;
 
     private LocalDateTime dateDebut;
@@ -21,4 +22,5 @@ public class TaskRequest {
 
     private UUID storyId;
     private UUID sprintId; // optional
+    private UUID assignedUserId;
 }

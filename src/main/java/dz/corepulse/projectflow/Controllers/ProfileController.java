@@ -1,10 +1,6 @@
 package dz.corepulse.projectflow.Controllers;
-
-
-
-
-
 import dz.corepulse.projectflow.Models.DTO.Requests.ProfileRequest;
+import dz.corepulse.projectflow.Models.DTO.Responses.ApiResponse;
 import dz.corepulse.projectflow.Models.DTO.Responses.ProfileResponse;
 import dz.corepulse.projectflow.Services.ProfileService;
 import lombok.RequiredArgsConstructor;
@@ -21,30 +17,30 @@ public class ProfileController {
     private final ProfileService service;
 
     @PostMapping
-    public ProfileResponse create(@RequestBody ProfileRequest request) {
-        return service.create(request);
+    public ApiResponse<ProfileResponse> create(@RequestBody ProfileRequest request) {
+        return ApiResponse.success(service.create(request));
     }
 
     @PutMapping("/{id}")
-    public ProfileResponse update(
+    public ApiResponse<ProfileResponse> update(
             @PathVariable UUID id,
             @RequestBody ProfileRequest request) {
-        return service.update(id, request);
+        return ApiResponse.success(service.update(id, request));
     }
 
     @GetMapping("/{id}")
-    public ProfileResponse get(@PathVariable UUID id) {
-        return service.get(id);
+    public ApiResponse<ProfileResponse> get(@PathVariable UUID id) {
+        return ApiResponse.success(service.get(id));
     }
 
     @GetMapping
-    public List<ProfileResponse> getAll() {
-        return service.getAll();
+    public ApiResponse<List<ProfileResponse>> getAll() {
+        return ApiResponse.success(service.getAll());
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public ApiResponse<Void> delete(@PathVariable UUID id) {
         service.delete(id);
+        return ApiResponse.message("Profile deleted successfully");
     }
 }
-

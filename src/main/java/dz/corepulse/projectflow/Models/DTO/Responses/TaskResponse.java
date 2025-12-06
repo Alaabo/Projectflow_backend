@@ -1,5 +1,6 @@
 package dz.corepulse.projectflow.Models.DTO.Responses;
 
+import dz.corepulse.projectflow.Models.Enums.TaskStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ public class TaskResponse {
 
     private String taskName;
     private String desc;
-    private String statut;
+    private TaskStatus statut;
     private String priority;
 
     private LocalDateTime dateDebut;
@@ -23,8 +24,8 @@ public class TaskResponse {
 
     private UUID storyId;
     private UUID sprintId;
+    private UUID assignedUserId;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
-

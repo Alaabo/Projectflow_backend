@@ -1,9 +1,11 @@
 package dz.corepulse.projectflow.Services;
 
+import dz.corepulse.projectflow.Models.DTO.Filters.TaskFilter;
 import dz.corepulse.projectflow.Models.DTO.Requests.TaskRequest;
+import dz.corepulse.projectflow.Models.DTO.Responses.PageResponse;
 import dz.corepulse.projectflow.Models.DTO.Responses.TaskResponse;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface TaskService {
@@ -14,8 +16,7 @@ public interface TaskService {
 
     TaskResponse get(UUID id);
 
-    List<TaskResponse> getAll();
+    PageResponse<TaskResponse> getAll(TaskFilter filter, Pageable pageable);
 
     void delete(UUID id);
 }
-

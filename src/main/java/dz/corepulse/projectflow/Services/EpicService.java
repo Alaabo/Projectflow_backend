@@ -2,10 +2,12 @@ package dz.corepulse.projectflow.Services;
 
 
 
+import dz.corepulse.projectflow.Models.DTO.Filters.EpicFilter;
 import dz.corepulse.projectflow.Models.DTO.Requests.EpicRequest;
+import dz.corepulse.projectflow.Models.DTO.Responses.PageResponse;
 import dz.corepulse.projectflow.Models.DTO.Responses.EpicResponse;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface EpicService {
@@ -16,8 +18,7 @@ public interface EpicService {
 
     EpicResponse get(UUID id);
 
-    List<EpicResponse> getAll();
+    PageResponse<EpicResponse> getAll(EpicFilter filter, Pageable pageable);
 
     void delete(UUID id);
 }
-

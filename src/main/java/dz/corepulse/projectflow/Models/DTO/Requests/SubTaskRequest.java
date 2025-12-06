@@ -1,22 +1,15 @@
 package dz.corepulse.projectflow.Models.DTO.Requests;
 
+import dz.corepulse.projectflow.Models.Enums.SubTaskStatus;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
 public class SubTaskRequest {
 
-    private String subTaskName;
+    private String name;
     private String desc;
-    private String statut;
-    private String priority;
-
-    private LocalDateTime dateDebut;
-    private Integer timeLeft;
-    private Integer timeEstimate;
+    private SubTaskStatus statut;
 
     private UUID taskId;
 }
-

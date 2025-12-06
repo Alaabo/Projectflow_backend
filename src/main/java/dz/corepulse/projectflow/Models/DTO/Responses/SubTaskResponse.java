@@ -1,5 +1,6 @@
 package dz.corepulse.projectflow.Models.DTO.Responses;
 
+import dz.corepulse.projectflow.Models.Enums.SubTaskStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -10,18 +11,12 @@ public class SubTaskResponse {
 
     private UUID id;
 
-    private String subTaskName;
+    private String name;
     private String desc;
-    private String statut;
-    private String priority;
-
-    private LocalDateTime dateDebut;
-    private Integer timeLeft;
-    private Integer timeEstimate;
+    private SubTaskStatus statut;
 
     private UUID taskId;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
-

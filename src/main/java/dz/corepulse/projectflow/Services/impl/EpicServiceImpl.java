@@ -1,19 +1,23 @@
 package dz.corepulse.projectflow.Services.impl;
 
 
+import dz.corepulse.projectflow.Exceptions.BusinessException;
 import dz.corepulse.projectflow.Mappers.EpicMapper;
+import dz.corepulse.projectflow.Models.DTO.Filters.EpicFilter;
 import dz.corepulse.projectflow.Models.DTO.Requests.EpicRequest;
 import dz.corepulse.projectflow.Models.DTO.Responses.EpicResponse;
+import dz.corepulse.projectflow.Models.DTO.Responses.PageResponse;
 import dz.corepulse.projectflow.Models.Entities.Epic;
 import dz.corepulse.projectflow.Models.Entities.Project;
 import dz.corepulse.projectflow.Repositories.EpicRepository;
 import dz.corepulse.projectflow.Repositories.ProjectRepository;
+import dz.corepulse.projectflow.Repositories.Specifications.EpicSpecifications;
 import dz.corepulse.projectflow.Services.EpicService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +33,7 @@ public class EpicServiceImpl implements EpicService {
 
         if (request.getProjectId() != null) {
             Project project = projectRepository.findById(request.getProjectId())
-                    .orElseThrow(() -> new RuntimeException("Project not found"));
+                    .orElseThrow(() -> new BusinessException("Project not found"));
             entity.setProject(project);
         }
 
@@ -40,13 +44,13 @@ public class EpicServiceImpl implements EpicService {
     @Override
     public EpicResponse update(UUID id, EpicRequest request) {
         Epic entity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Epic not found"));
+                .orElseThrow(() -> new BusinessException("Epic not found"));
 
         mapper.updateEntity(request, entity);
 
         if (request.getProjectId() != null) {
             Project project = projectRepository.findById(request.getProjectId())
-                    .orElseThrow(() -> new RuntimeException("Project not found"));
+                    .orElseThrow(() -> new BusinessException("Project not found"));
             entity.setProject(project);
         }
 
@@ -58,22 +62,21 @@ public class EpicServiceImpl implements EpicService {
     public EpicResponse get(UUID id) {
         return repository.findById(id)
                 .map(mapper::toDto)
-                .orElseThrow(() -> new RuntimeException("Epic not found"));
+                .orElseThrow(() -> new BusinessException("Epic not found"));
     }
 
     @Override
-    public List<EpicResponse> getAll() {
-        return repository.findAll().stream()
-                .map(mapper::toDto)
-                .toList();
+    public PageResponse<EpicResponse> getAll(EpicFilter filter, Pageable pageable) {
+        var page = repository.findAll(EpicSpecifications.withFilter(filter), pageable)
+                .map(mapper::toDto);
+        return PageResponse.from(page);
     }
 
     @Override
     public void delete(UUID id) {
         if (!repository.existsById(id))
-            throw new RuntimeException("Epic not found");
+            throw new BusinessException("Epic not found");
 
         repository.deleteById(id);
     }
 }
-

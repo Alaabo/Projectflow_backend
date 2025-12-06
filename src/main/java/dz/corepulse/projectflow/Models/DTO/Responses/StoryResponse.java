@@ -1,7 +1,6 @@
 package dz.corepulse.projectflow.Models.DTO.Responses;
 
-
-
+import dz.corepulse.projectflow.Models.Enums.StoryStatus;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -13,7 +12,7 @@ public class StoryResponse {
 
     private String storyName;
     private String desc;
-    private String statut;
+    private StoryStatus statut;
     private String priority;
     private Integer pts;
     private Integer timeLeft;
@@ -27,4 +26,3 @@ public class StoryResponse {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
-

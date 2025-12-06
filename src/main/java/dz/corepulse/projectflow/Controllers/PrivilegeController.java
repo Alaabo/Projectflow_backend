@@ -1,6 +1,7 @@
 package dz.corepulse.projectflow.Controllers;
 
 import dz.corepulse.projectflow.Models.DTO.Requests.PrivilegeRequest;
+import dz.corepulse.projectflow.Models.DTO.Responses.ApiResponse;
 import dz.corepulse.projectflow.Models.DTO.Responses.PrivilegeResponse;
 import dz.corepulse.projectflow.Services.PrivilegeService;
 import lombok.RequiredArgsConstructor;
@@ -17,28 +18,29 @@ public class PrivilegeController {
     private final PrivilegeService service;
 
     @PostMapping
-    public PrivilegeResponse create(@RequestBody PrivilegeRequest request) {
-        return service.create(request);
+    public ApiResponse<PrivilegeResponse> create(@RequestBody PrivilegeRequest request) {
+        return ApiResponse.success(service.create(request));
     }
 
     @PutMapping("/{id}")
-    public PrivilegeResponse update(@PathVariable UUID id,
-                                    @RequestBody PrivilegeRequest request) {
-        return service.update(id, request);
+    public ApiResponse<PrivilegeResponse> update(@PathVariable UUID id,
+                                                 @RequestBody PrivilegeRequest request) {
+        return ApiResponse.success(service.update(id, request));
     }
 
     @GetMapping("/{id}")
-    public PrivilegeResponse get(@PathVariable UUID id) {
-        return service.get(id);
+    public ApiResponse<PrivilegeResponse> get(@PathVariable UUID id) {
+        return ApiResponse.success(service.get(id));
     }
 
     @GetMapping
-    public List<PrivilegeResponse> getAll() {
-        return service.getAll();
+    public ApiResponse<List<PrivilegeResponse>> getAll() {
+        return ApiResponse.success(service.getAll());
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public ApiResponse<Void> delete(@PathVariable UUID id) {
         service.delete(id);
+        return ApiResponse.message("Privilege deleted successfully");
     }
 }

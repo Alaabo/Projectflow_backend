@@ -1,8 +1,6 @@
 package dz.corepulse.projectflow.Models.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,4 +27,12 @@ public class Project extends AbstractEntity {
 
     @OneToMany(mappedBy = "project")
     private List<Sprint> sprints = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_project",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> userList = new ArrayList<>();
 }

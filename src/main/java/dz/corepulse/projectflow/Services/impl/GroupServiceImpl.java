@@ -2,6 +2,7 @@ package dz.corepulse.projectflow.Services.impl;
 
 
 
+import dz.corepulse.projectflow.Exceptions.BusinessException;
 import dz.corepulse.projectflow.Mappers.GroupMapper;
 import dz.corepulse.projectflow.Models.DTO.Requests.GroupRequest;
 import dz.corepulse.projectflow.Models.DTO.Responses.GroupResponse;
@@ -33,7 +34,7 @@ public class GroupServiceImpl implements GroupService {
         // Set project
         if (request.getProjectId() != null) {
             Project project = projectRepository.findById(request.getProjectId())
-                    .orElseThrow(() -> new RuntimeException("Project not found"));
+                    .orElseThrow(() -> new BusinessException("Project not found"));
             entity.setProject(project);
         }
 
@@ -48,13 +49,13 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public GroupResponse update(UUID id, GroupRequest request) {
         Group entity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Group not found"));
+                .orElseThrow(() -> new BusinessException("Group not found"));
 
         mapper.updateEntity(request, entity);
 
         if (request.getProjectId() != null) {
             Project project = projectRepository.findById(request.getProjectId())
-                    .orElseThrow(() -> new RuntimeException("Project not found"));
+                    .orElseThrow(() -> new BusinessException("Project not found"));
             entity.setProject(project);
         }
 
@@ -69,7 +70,7 @@ public class GroupServiceImpl implements GroupService {
     public GroupResponse get(UUID id) {
         return repository.findById(id)
                 .map(mapper::toDto)
-                .orElseThrow(() -> new RuntimeException("Group not found"));
+                .orElseThrow(() -> new BusinessException("Group not found"));
     }
 
     @Override
@@ -81,7 +82,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void delete(UUID id) {
         if (!repository.existsById(id))
-            throw new RuntimeException("Group not found");
+            throw new BusinessException("Group not found");
 
         repository.deleteById(id);
     }

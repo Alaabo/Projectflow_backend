@@ -1,9 +1,7 @@
 package dz.corepulse.projectflow.Models.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import dz.corepulse.projectflow.Models.Enums.TaskStatus;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +17,8 @@ public class Task extends AbstractEntity {
 
     private String taskName;
     private String desc;
-    private String statut;
+    @Enumerated(EnumType.STRING)
+    private TaskStatus statut = TaskStatus.TODO;
     private String priority;
 
     private LocalDateTime dateDebut;
@@ -39,4 +38,3 @@ public class Task extends AbstractEntity {
     @OneToMany(mappedBy = "task")
     private List<SubTask> subtasks = new ArrayList<>();
 }
-

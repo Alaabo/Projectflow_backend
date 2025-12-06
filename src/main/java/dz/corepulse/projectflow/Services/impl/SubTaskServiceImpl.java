@@ -1,5 +1,6 @@
 package dz.corepulse.projectflow.Services.impl;
 
+import dz.corepulse.projectflow.Exceptions.BusinessException;
 import dz.corepulse.projectflow.Mappers.SubTaskMapper;
 import dz.corepulse.projectflow.Models.DTO.Requests.SubTaskRequest;
 import dz.corepulse.projectflow.Models.DTO.Responses.SubTaskResponse;
@@ -27,7 +28,7 @@ public class SubTaskServiceImpl implements SubTaskService {
 
         if (request.getTaskId() != null) {
             var task = taskRepository.findById(request.getTaskId())
-                    .orElseThrow(() -> new RuntimeException("Task not found"));
+                    .orElseThrow(() -> new BusinessException("Task not found"));
             entity.setTask(task);
         }
 
@@ -38,13 +39,13 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Override
     public SubTaskResponse update(UUID id, SubTaskRequest request) {
         SubTask entity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Subtask not found"));
+                .orElseThrow(() -> new BusinessException("Subtask not found"));
 
         mapper.updateEntity(request, entity);
 
         if (request.getTaskId() != null) {
             var task = taskRepository.findById(request.getTaskId())
-                    .orElseThrow(() -> new RuntimeException("Task not found"));
+                    .orElseThrow(() -> new BusinessException("Task not found"));
             entity.setTask(task);
         }
 
@@ -56,7 +57,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     public SubTaskResponse get(UUID id) {
         return repository.findById(id)
                 .map(mapper::toDto)
-                .orElseThrow(() -> new RuntimeException("Subtask not found"));
+                .orElseThrow(() -> new BusinessException("Subtask not found"));
     }
 
     @Override
@@ -69,8 +70,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Override
     public void delete(UUID id) {
         if (!repository.existsById(id))
-            throw new RuntimeException("Subtask not found");
+            throw new BusinessException("Subtask not found");
         repository.deleteById(id);
     }
 }
-
