@@ -8,7 +8,7 @@ import java.util.UUID;
 public class SubTaskRequest {
 
     private String name;
-    private String desc;
+    private String description;
     private SubTaskStatus statut;
 
     private UUID taskId;

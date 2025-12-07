@@ -9,7 +9,7 @@ import java.util.UUID;
 public class StoryRequest {
 
     private String storyName;
-    private String desc;
+    private String description;
     private StoryStatus statut;
     private String priority;
     private Integer pts;

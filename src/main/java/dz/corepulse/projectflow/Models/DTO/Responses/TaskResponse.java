@@ -12,7 +12,7 @@ public class TaskResponse {
     private UUID id;
 
     private String taskName;
-    private String desc;
+    private String description;
     private TaskStatus statut;
     private String priority;
 

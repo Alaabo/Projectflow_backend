@@ -12,7 +12,7 @@ public class SprintResponse {
     private UUID id;
 
     private String sprintName;
-    private String desc;
+    private String description;
     private String statut;
     private String priority;
     private Integer progress;
@@ -26,4 +26,3 @@ public class SprintResponse {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
-

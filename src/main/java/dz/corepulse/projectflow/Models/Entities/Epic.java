@@ -18,7 +18,7 @@ import java.util.List;
 public class Epic extends AbstractEntity {
 
     private String epicName;
-    private String desc;
+    private String description;
     private String statut;
     private String priority;
     private Integer progress;

@@ -10,7 +10,7 @@ import java.util.UUID;
 public class EpicRequest {
 
     private String epicName;
-    private String desc;
+    private String description;
     private String statut;
     private String priority;
     private Integer progress;

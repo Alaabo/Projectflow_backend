@@ -12,7 +12,7 @@ public class SubTaskResponse {
     private UUID id;
 
     private String name;
-    private String desc;
+    private String description;
     private SubTaskStatus statut;
 
     private UUID taskId;

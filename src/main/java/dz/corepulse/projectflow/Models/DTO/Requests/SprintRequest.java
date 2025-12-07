@@ -10,7 +10,7 @@ import java.util.UUID;
 public class SprintRequest {
 
     private String sprintName;
-    private String desc;
+    private String description;
     private String statut;
     private String priority;
     private Integer progress;
@@ -21,4 +21,3 @@ public class SprintRequest {
 
     private UUID projectId;
 }
-

@@ -11,7 +11,7 @@ public class StoryResponse {
     private UUID id;
 
     private String storyName;
-    private String desc;
+    private String description;
     private StoryStatus statut;
     private String priority;
     private Integer pts;

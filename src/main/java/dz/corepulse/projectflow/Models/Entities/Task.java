@@ -16,7 +16,7 @@ import java.util.List;
 public class Task extends AbstractEntity {
 
     private String taskName;
-    private String desc;
+    private String description;
     @Enumerated(EnumType.STRING)
     private TaskStatus statut = TaskStatus.TODO;
     private String priority;

@@ -18,7 +18,7 @@ import java.util.List;
 public class Sprint extends AbstractEntity {
 
     private String sprintName;
-    private String desc;
+    private String description;
     private String statut;
     private String priority;
     private Integer progress;
@@ -33,4 +33,3 @@ public class Sprint extends AbstractEntity {
     @OneToMany(mappedBy = "sprint")
     private List<Story> stories = new ArrayList<>();
 }
-

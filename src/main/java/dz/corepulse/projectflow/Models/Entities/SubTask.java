@@ -12,7 +12,7 @@ import lombok.Setter;
 public class SubTask extends AbstractEntity {
 
     private String name;
-    private String desc;
+    private String description;
     @Enumerated(EnumType.STRING)
     private SubTaskStatus statut = SubTaskStatus.TODO;
 

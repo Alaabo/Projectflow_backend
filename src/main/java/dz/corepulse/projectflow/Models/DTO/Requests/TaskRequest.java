@@ -10,7 +10,7 @@ import java.util.UUID;
 public class TaskRequest {
 
     private String taskName;
-    private String desc;
+    private String description;
     private TaskStatus statut;
     private String priority;
 

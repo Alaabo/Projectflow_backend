@@ -68,7 +68,7 @@ public class DevDataSeeder implements CommandLineRunner {
         for (int i = 1; i <= 2; i++) {
             Epic epic = new Epic();
             epic.setEpicName("Epic " + i);
-            epic.setDesc("Key capability " + i);
+            epic.setDescription("Key capability " + i);
             epic.setProject(project);
             epic.setStatut("PLANNED");
             epics.add(epic);
@@ -81,7 +81,7 @@ public class DevDataSeeder implements CommandLineRunner {
         for (int i = 0; i < 2; i++) {
             Sprint sprint = new Sprint();
             sprint.setSprintName("Sprint " + (i + 1));
-            sprint.setDesc("Iteration " + (i + 1));
+            sprint.setDescription("Iteration " + (i + 1));
             sprint.setProject(project);
             sprint.setStatut("OPEN");
             sprint.setDateDebut(LocalDateTime.now().plusDays(i * 14L));
@@ -96,7 +96,7 @@ public class DevDataSeeder implements CommandLineRunner {
         for (int i = 0; i < 5; i++) {
             Story story = new Story();
             story.setStoryName("Story " + (i + 1));
-            story.setDesc("Generated story " + (i + 1));
+            story.setDescription("Generated story " + (i + 1));
             story.setEpic(epics.get(i % epics.size()));
             story.setSprint(sprints.get(i % sprints.size()));
             story.setStatut(StoryStatus.TODO);
@@ -113,7 +113,7 @@ public class DevDataSeeder implements CommandLineRunner {
             Story story = stories.get(i % stories.size());
             Task task = new Task();
             task.setTaskName("Task " + (i + 1));
-            task.setDesc("Detail task " + (i + 1));
+            task.setDescription("Detail task " + (i + 1));
             task.setStory(story);
             task.setSprint(story.getSprint());
             task.setPriority("HIGH");
@@ -128,7 +128,7 @@ public class DevDataSeeder implements CommandLineRunner {
             for (int i = 1; i <= 2; i++) {
                 SubTask subTask = new SubTask();
                 subTask.setName(task.getTaskName() + " - Subtask " + i);
-                subTask.setDesc("Work package " + i);
+                subTask.setDescription("Work package " + i);
                 subTask.setTask(task);
                 subTask.setStatut(SubTaskStatus.TODO);
                 subtasks.add(subTask);

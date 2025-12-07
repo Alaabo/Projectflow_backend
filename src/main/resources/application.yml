@@ -11,7 +11,7 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
@@ -20,7 +20,7 @@ spring:
             non_contextual_creation: true
 
   flyway:
-    enabled: true
+    enabled: false
     locations: classpath:db/migration
 
 server:

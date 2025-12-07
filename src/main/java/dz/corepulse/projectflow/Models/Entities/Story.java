@@ -16,7 +16,7 @@ import java.util.List;
 public class Story extends AbstractEntity {
 
     private String storyName;
-    private String desc;
+    private String description;
     @Enumerated(EnumType.STRING)
     private StoryStatus statut = StoryStatus.TODO;
     private String priority;
